@@ -18,6 +18,7 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  role ROLE
   posts Post[]
   profile Profile?
 }
@@ -37,4 +38,10 @@ model Post {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
+}
+
+
+enum ROLE{
+  USER
+  ADMIN
 }
