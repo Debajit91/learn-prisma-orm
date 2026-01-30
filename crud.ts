@@ -49,6 +49,9 @@ async function run(){
 
     // console.dir(users,{depth: Infinity});
 
+
+    // update
+
     // const updateUser = await prisma.profile.update({
     //     where:{
     //         userId: 1
@@ -69,6 +72,9 @@ async function run(){
     //     }
     // })
 
+
+    // delete
+
     // const deleteUser = await prisma.user.delete({
     //     where:{
     //         id:2
@@ -76,12 +82,26 @@ async function run(){
     // })
 
 
-    const getUserById = await prisma.user.findUnique({
+    // const getUserById = await prisma.user.findUnique({
+    //     where:{
+    //         id:2
+    //     }
+    // })
+
+    const upsertUser = await prisma.user.upsert({
         where:{
-            id:2
+            email: "dev@gmail.com"
+        },
+        update:{
+            name: "Dev Jeet Roy",
+            email: "dev@gmail.com"
+        },
+        create:{
+            name: "Dev Roy",
+            email: "dev@gmail.com"
         }
     })
-    console.log(getUserById)
+    console.log(upsertUser)
 }
 
 run();
